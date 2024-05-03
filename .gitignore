@@ -1,0 +1,5 @@
+.nvim.lua
+.sqls.yml
+db_queries/**
+
+*.pdf
