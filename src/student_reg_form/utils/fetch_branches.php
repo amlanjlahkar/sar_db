@@ -3,13 +3,13 @@ require_once "../../dbcon.php";
 
 $courseID = $_GET["courseID"];
 
-$squery = "SELECT b.BranchID, b.BranchName
+$q_cb_info = "SELECT b.BranchID, b.BranchName
            FROM Branch b
            INNER JOIN CourseToBranch cb ON b.BranchID = cb.BranchID
            WHERE cb.CourseID = $courseID
            ORDER BY b.BranchName ASC";
 
-$result = $conn->query($squery);
+$result = $conn->query($q_cb_info);
 
 $branches = [];
 while ($row = $result->fetch_assoc()) {

@@ -8,7 +8,7 @@
 <body>
     <h1>Student Registration Form</h1>
 
-    <form action="assign/student.php" method="POST">
+    <form id="st_form" action="assign/student.php" method="POST">
         <label for="name">Name:</label><br>
         <input type="text" id="name" name="name" maxlength="30" required><br><br>
 
@@ -25,9 +25,9 @@
             <?php
             require_once "../dbcon.php";
 
-            $squery =
+            $q_course_info =
                 "SELECT CourseID, CourseName FROM Course ORDER BY CourseName ASC";
-            $courses = $conn->query($squery);
+            $courses = $conn->query($q_course_info);
 
             if ($courses->num_rows > 0) {
                 echo "<select id='cid' name='cid'>";

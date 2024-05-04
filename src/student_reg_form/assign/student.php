@@ -9,15 +9,15 @@ function gen_studentID($sql_conn, $cbid) {
     return $cbid . sprintf("%02d", $serial_no);
 }
 
-require_once "../dbcon.php";
+require_once "../../dbcon.php";
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $name = $_POST["name"];
-    $dob = $_POST["dob"];
-    $phno = $_POST["phno"];
-    $addr = $_POST["addr"];
-    $cid = $_POST["cid"];
-    $bid = $_POST["bid"];
+    $name = $_POST["st_name"];
+    $addr = $_POST["st_addr"];
+    $dob = $_POST["st_dob"];
+    $phno = $_POST["st_phno"];
+    $cid = $_POST["st_cid"];
+    $bid = $_POST["st_bid"];
 
     $q_fetch_cbid = "SELECT CBID FROM CourseToBranch WHERE CourseID = '$cid' AND BranchID = '$bid'";
     $result = $conn->query($q_fetch_cbid);
