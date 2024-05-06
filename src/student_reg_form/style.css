@@ -136,3 +136,10 @@ button:hover {
     cursor: pointer;
     background-color: var(--green_shade_light);
 }
+
+@media screen and (max-width: 1020px) {
+    #student_form {
+        min-width: 80%;
+    }
+}
+

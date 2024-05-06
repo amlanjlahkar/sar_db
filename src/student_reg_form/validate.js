@@ -1,9 +1,12 @@
 const form = document.forms["st_info"]
 const st_name = form.elements["st_name"]
 const st_phno = form.elements["st_phno"]
+const st_addr = form.elements["st_addr"]
+const st_dob = form.elements["st_dob"]
 
 const err_st_name = document.getElementById("err_st_name")
 const err_st_phno = document.getElementById("err_st_phno")
+const err_st_dob = document.getElementById("err_st_dob")
 
 const err_icon =
     '<svg \
@@ -73,7 +76,7 @@ function validateName(field, errSpan, maxLen = 35) {
     })
 }
 
-function validatePhNo(field, errSpan) {
+function validatePhNo(field, errSpan, maxLen = st_phno.maxLength) {
     if (!field || !errSpan) return
 
     const validInput = /^[0-9]+$/
@@ -95,13 +98,43 @@ function validatePhNo(field, errSpan) {
     })
 }
 
-function resetOnSubmit(form) {
-    form.addEventListener("submit", (event) => {
-        event.preventDefault()
-        form.reset()
+function validateDob(field, errSpan) {
+    if (!field || !errSpan) return
+
+    const defStyle = getDefStyle(field)
+
+    function getAge(dob) {
+        const today = new Date()
+
+        let age = today.getFullYear() - dob.getFullYear()
+
+        const monthDiff = today.getMonth() - dob.getMonth()
+
+        if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < dob.getDate())) {
+            age--
+        }
+
+        return age
+    }
+
+    field.addEventListener("input", () => {
+        const dob = new Date(field.value.trim())
+        const age = getAge(dob)
+
+        let errMsg = ""
+
+        if (age < 18) {
+            errMsg = `${err_icon} Age must be 18+`
+        }
+
+        if (errMsg) {
+            hookStyle(defStyle, field, errSpan, true, errMsg)
+        } else {
+            hookStyle(defStyle, field, errSpan, false)
+        }
     })
 }
 
 validateName(st_name, err_st_name)
 validatePhNo(st_phno, err_st_phno)
-// resetOnSubmit(form)
+validateDob(st_dob, err_st_dob)

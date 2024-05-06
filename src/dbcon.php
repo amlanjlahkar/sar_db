@@ -3,7 +3,7 @@
 const HOST = "localhost";
 const USER = "amlan";
 const PASS = "";
-const DB = "StudentAcademicRecord";
+const DB = "student_academic_record";
 
 $conn = mysqli_init();
 

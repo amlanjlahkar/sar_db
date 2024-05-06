@@ -5,7 +5,7 @@ $courseID = $_GET["courseID"];
 
 $q_cb_info = "SELECT b.BranchID, b.BranchName
            FROM Branch b
-           INNER JOIN CourseToBranch cb ON b.BranchID = cb.BranchID
+           INNER JOIN BranchToCourse cb ON b.BranchID = cb.BranchID
            WHERE cb.CourseID = $courseID
            ORDER BY b.BranchName ASC";
 
@@ -16,11 +16,9 @@ while ($row = $result->fetch_assoc()) {
     $branches[] = $row;
 }
 
-// Return branches as JSON
 header("Content-Type: application/json");
 echo json_encode($branches);
 
 $conn->close();
-
 ?>
 

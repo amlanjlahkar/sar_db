@@ -1,0 +1,25 @@
+{
+    "trailingComma": "es5",
+    "semi": false,
+    "singleQuote": false,
+    "plugins": [
+        "@prettier/plugin-php",
+        "prettier-plugin-sql"
+    ],
+    "overrides": [
+        {
+            "files": "*.php",
+            "options": {
+                "phpVersion": "8.2",
+                "braceStyle": "1tbs"
+            }
+        },
+        {
+            "files": "*.sql",
+            "options": {
+                "keywordCase": "upper",
+                "dataTypeCase": "lower"
+            }
+        }
+    ]
+}

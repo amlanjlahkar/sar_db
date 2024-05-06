@@ -1,24 +1,26 @@
 // Function to fetch branches based on selected course
 function fetchBranches() {
-    let courseID = document.getElementById("st_cid").value
+    let courseSelector = document.getElementById("st_cid").value
 
-    let url = "./utils/fetch_branches.php?courseID=" + courseID
+    if (courseSelector == "") return
+
+    let url = "./utils/fetch_branches.php?courseID=" + courseSelector
 
     fetch(url)
-        .then((response) => response.json())
+        .then((res) => res.json())
         .then((data) => {
-            // Populate the branch select options
-            let selBranch = document.getElementById("st_bid")
-            selBranch.innerHTML = ""
+            let branchSelector = document.getElementById("st_bid")
+            branchSelector.innerHTML = ""
             data.forEach((branch) => {
-                let opt = document.createElement("option")
-                opt.value = branch.BranchID
-                opt.textContent = branch.BranchName
-                selBranch.appendChild(opt)
+                let newOpt = document.createElement("option")
+                newOpt.value = branch.BranchID
+                newOpt.textContent = branch.BranchName
+                branchSelector.appendChild(newOpt)
             })
         })
         .catch((err) => console.error("Error fetching branches:", err))
 }
 
 document.getElementById("st_cid").addEventListener("change", fetchBranches)
+
 fetchBranches()
