@@ -44,7 +44,7 @@
             [*DOB*],
             [*Address*],
             [*PhoneNo*],
-            [*CBID*],
+            [*BCID*],
             [*YOA*],
         ),
 
@@ -58,13 +58,13 @@
         [year],
 
         [*Size*],
-        [13],
+        [11],
         [30],
-        [10],
+        [],
         [40],
         [10],
-        [1],
-        [4],
+        [length 5],
+        [],
 
         [*Constraint*],
         [*PK*],
@@ -77,37 +77,32 @@
     ),
 )
 
-
 #linebreak()
 
 #figure(
-    caption: [Course[M] (3 attributes)],
+    caption: [Course[M] (2 attributes)],
     gap: 1.25em,
     table(
-        columns: 4,
+        columns: 3,
         inset: 10pt,
         align: horizon,
         header(
             [],
             [*CourseID*],
             [*CourseName*],
-            [*Duration*],
         ),
 
         [*Datatype*],
         [varchar],
         [varchar],
-        [tinyint],
 
         [*Size*],
-        [3],
-        [25],
-        [1],
+        [2],
+        [40],
 
         [*Constraint*],
         [*PK*],
         [NOT NULL],
-        [NOT NULL, UNSIGNED],
     ),
 )
 
@@ -115,33 +110,29 @@
 #linebreak()
 
 #figure(
-    caption: [Branch[M] (3 attributes)],
+    caption: [Branch[M] (2 attributes)],
     gap: 1.25em,
     table(
-        columns:4,
+        columns: 3,
         inset: 10pt,
         align: horizon,
         table.header(
             [],
             [*BranchID*],
             [*BranchName*],
-            [*Capacity*],
         ),
 
         [*Datatype*],
         [varchar],
         [varchar],
-        [tinyint],
 
         [*Size*],
         [3],
-        [20],
-        [3],
+        [50],
 
         [*Constraint*],
         [*PK*],
         [NOT NULL],
-        [NOT NULL, UNSIGNED],
 
     ),
 )
@@ -149,33 +140,41 @@
 #pagebreak()
 
 #figure(
-    caption: [CourseToBranch[W] (3 attributes)],
+    caption: [BranchToCourse[W] (5 attributes)],
     gap: 1.25em,
     table(
-        columns:4,
+        columns: 6,
         inset: 10pt,
         align: horizon,
         table.header(
             [],
-            [*CBID*],
-            [*CourseID*],
+            [*BCID*],
             [*BranchID*],
+            [*CourseID*],
+            [*Capacity*],
+            [*Duration*],
         ),
 
         [*Datatype*],
         [tinyint],
         [varchar],
         [varchar],
+        [tinyint],
+        [tinyint],
 
         [*Size*],
+        [],
         [3],
-        [3],
-        [3],
+        [2],
+        [(length 2)],
+        [(length 1)],
 
         [*Constraint*],
         [*PK*],
         [*FK*],
         [*FK*],
+        [NOT NULL, UNSIGNED],
+        [NOT NULL, UNSIGNED]
     ),
 )
 
@@ -193,7 +192,7 @@
             [*PaperCode*],
             [*PaperName*],
             [*Type*],
-            [*CBID*],
+            [*BCID*],
             [*Semester*],
             [*Credit*],
         ),
@@ -209,10 +208,10 @@
         [*Size*],
         [9],
         [20],
-        [1],
-        [3],
-        [1],
-        [1],
+        [],
+        [5],
+        [(length 1)],
+        [(length 2)],
 
         [*Constraint*],
         [*PK*],
@@ -252,9 +251,9 @@
         [varchar],
 
         [*Size*],
-        [13],
+        [11],
         [9],
-        [4],
+        [],
         [(4,2)],
         [(4,2)],
         [2],
@@ -273,17 +272,19 @@
 
 #pad(y: 3pt, [=== Unique Key Formats])
 
-- #underline[StudentID] Format: Admission Year(4) + Course Initials(3) + '/' + Branch Initials(3) + Serial No.(2) \
-    Example: 2023BT/ETE19 #text(rgb("#6c757d"))[(2023 year + B.Tech + ETE Dept. + 19)]
+- #underline[StudentID] Format: Admission Year(4) + BCID(5) + Serial No.(2) \
+    Example: 2024ETE0119 #text(rgb("#6c757d"))[(2024 year + ETE branch + B.Tech course + 19#super[th] student)]
 
-- #underline[CourseID] Format: Course Initials(3) \
-    Example: BT #text(rgb("#6c757d"))[(B.Tech)]
+- #underline[CourseID] Format: Course Codes(2) #text(rgb("#6c757d"))[(B.Tech = 01, M.Tech = 02, MCA = 03)]
 
 - #underline[BranchID] Format: Branch Initials(3) \
-    Example: MCA
+    Example: ETE
 
-- #underline[PaperCode] Format: Course Initials(3) + Branch Initials(3) + Semester(1) + Type(1) + Paper No.(1) \
-    Example: BTMEC2P3 #text(rgb("#6c757d"))[(B.Tech + Mechanical + 2ndSem + Pactical + 3rd Paper)]
+- #underline[BCID] Format: BranchID(3) + CourseID(2) \
+    Example: CA03 #text(rgb("#6c757d"))[(Computer Applications(CA) Branch + MCA course)]
+
+- #underline[PaperCode] Format: BCID(5) + Semester(1) + Type(1) + Paper No.(2) \
+    Example: ETE012P03 #text(rgb("#6c757d"))[(ETE branch + B.Tech course + 2nd Semester + Pactical + 3#super[rd] Paper)]
 
 #pagebreak()
 
@@ -293,6 +294,6 @@
 
 #figure(
     gap: 20pt,
-    rect(stroke: 0.5pt + gray)[#image("assets/er_diagram02.png", height: 65%)],
+    rect(stroke: 0.5pt + gray)[#image("assets/er_diagram02.png", height: 60%)],
     caption: [ER Diagram for the Student Academic Records Database]
-),
+)
