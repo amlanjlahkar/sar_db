@@ -33,8 +33,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $addr = $_POST["st_addr"];
     $dob = $_POST["st_dob"];
     $phno = $_POST["st_phno"];
-    $cid = $_POST["st_cid"];
-    $bid = $_POST["st_bid"];
+    $course_id = $_POST["st_course"];
+    $branch_id = $_POST["st_branch"];
 
     if (is_duplicate_phno($conn, $phno)) {
         send_response(false, "Phone No. is already taken");
@@ -42,7 +42,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         exit();
     }
 
-    $q_fetch_cbid = "SELECT BCID FROM BranchToCourse WHERE CourseID = '$cid' AND BranchID = '$bid'";
+    $q_fetch_cbid = "SELECT BCID FROM BranchToCourse WHERE CourseID = '$course_id' AND BranchID = '$branch_id'";
     $result = $conn->query($q_fetch_cbid);
 
     if ($result->num_rows == 1) {

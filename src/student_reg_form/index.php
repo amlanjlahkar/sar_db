@@ -87,7 +87,7 @@
 
                         <div class="input_block">
                             <label for="st_course">Course</label><br />
-                            <select id="st_cid" name="st_cid">
+                            <select id="st_course" name="st_course">
                                 <option value="" disabled selected hidden>
                                     Select a course
                                 </option>
@@ -116,7 +116,7 @@
                         </div>
                         <div class="input_block">
                             <label for="st_branch">Branch</label><br />
-                            <select id="st_bid" name="st_bid">
+                            <select id="st_branch" name="st_branch">
                                 <option value="" disabled selected hidden>
                                     Select branch
                                 </option>
@@ -134,9 +134,9 @@
         </div>
     </body>
 
-    <script src="./validate.js"></script>
-
     <script src="utils/update_branches.js"></script>
+
+    <script src="./validate.js"></script>
 
     <script>
         let formEl = document.getElementById("st_info");
@@ -150,14 +150,20 @@
             fetch("assign/student.php", {
                 method: "POST",
                 body: formData
-            }).then((res) => { if (res.ok) return res.json() })
-                .then((data) => {
-                    alert(data.msg)
-                    if (data.success) {
-                        formEl.reset()
-                    }
-                })
-                .catch((err) => console.error("Error fetching data:", err))
+            })
+            .then((res) => { if (res.ok) return res.json() })
+            .then((data) => {
+                alert(data.msg)
+                if (data.success) {
+                    document.getElementById("st_branch").innerHTML = "\
+                        <option value='' disabled selected hidden> \
+                            Select branch \
+                        </option>"
+
+                    formEl.reset()
+                }
+            })
+            .catch((err) => console.error("Error fetching data:", err))
         })
     </script>
 </html>
