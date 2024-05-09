@@ -22,12 +22,7 @@
                 </div>
                 <div id="form_block">
 
-                    <form
-                        id="st_info"
-                        action="assign/student.php"
-                        method="POST"
-                    >
-
+                    <form id="st_info">
                         <br />
                         <div class="input_block">
                             <label for="st_name">Student Name</label><br />
@@ -150,7 +145,7 @@
             const formData = new FormData(formEl);
             const data = Object.fromEntries(formData);
 
-            fetch("assign/student.php", {
+            fetch("create/student.php", {
                 method: "POST",
                 body: formData
             })
