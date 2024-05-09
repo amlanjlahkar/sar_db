@@ -20,8 +20,6 @@ if (!$conn->real_connect(HOST, USER, PASS, DB)) {
     );
 }
 
-// echo "Success... (" . $conn->host_info . ")\n";
-
 // $conn->close();
 
 ?>

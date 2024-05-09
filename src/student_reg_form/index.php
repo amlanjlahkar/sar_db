@@ -76,6 +76,7 @@
                                 type="text"
                                 id="st_phno"
                                 name="st_phno"
+                                minlength="10"
                                 maxlength="10"
                                 autocomplete="off"
                                 required
@@ -108,6 +109,8 @@
                                             "</option>";
                                     }
                                 }
+
+                                $courses->free();
                                 ?>
                             </select>
                             <br />
@@ -151,9 +154,12 @@
                 method: "POST",
                 body: formData
             })
-            .then((res) => { if (res.ok) return res.json() })
+            .then((res) => { if (res.ok) { console.log("OK"); return res.json() } })
             .then((data) => {
                 alert(data.msg)
+
+                if (data.strace) { console.error(data.strace) }
+
                 if (data.success) {
                     document.getElementById("st_branch").innerHTML = "\
                         <option value='' disabled selected hidden> \
