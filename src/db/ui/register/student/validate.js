@@ -76,7 +76,7 @@ function validateName(field, errSpan, maxLen = 35) {
     })
 }
 
-function validatePhNo(field, errSpan, maxLen = st_phno.maxLength) {
+function validatePhNo(field, errSpan) {
     if (!field || !errSpan) return
 
     const validInput = /^[0-9]+$/

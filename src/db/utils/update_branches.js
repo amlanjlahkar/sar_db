@@ -4,7 +4,7 @@ function fetchBranches() {
 
     if (courseSelector == "") return
 
-    let url = "./utils/fetch_branches.php?courseID=" + courseSelector
+    let url = "../../../utils/fetch_branches.php?courseID=" + courseSelector
 
     fetch(url)
         .then((res) => res.json())

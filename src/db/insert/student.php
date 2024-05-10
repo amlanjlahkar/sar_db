@@ -1,6 +1,6 @@
 <?php
 
-require_once "../../dbcon.php";
+require_once "../dbcon.php";
 require_once "../utils/utils.php";
 
 function gen_studentID($sql_conn, $bcid) {

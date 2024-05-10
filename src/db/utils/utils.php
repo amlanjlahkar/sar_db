@@ -39,6 +39,7 @@ function send_response($success, $msg, $strace = null) {
 
 /*
  * Check if a query outputs any result. Can be used to avoid duplications
+ *
  * @param mysqli_object $sql_conn Mysqli object returned by mysqli_init
  * @param string $q SQL Query to execute
  * @return bool|array Boolean value upon successful execution, else array returned by try_query

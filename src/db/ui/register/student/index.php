@@ -88,7 +88,7 @@
                                     Select a course
                                 </option>
                                 <?php
-                                require_once "../dbcon.php";
+                                require_once "../../../dbcon.php";
 
                                 $q_course_info =
                                     "SELECT CourseID, CourseName FROM Course ORDER BY CourseName ASC";
@@ -132,7 +132,7 @@
         </div>
     </body>
 
-    <script src="utils/update_branches.js"></script>
+    <script src="../../../utils/update_branches.js"></script>
 
     <script src="./validate.js"></script>
 
@@ -145,7 +145,7 @@
             const formData = new FormData(formEl);
             const data = Object.fromEntries(formData);
 
-            fetch("create/student.php", {
+            fetch("../../../insert/student.php", {
                 method: "POST",
                 body: formData
             })
