@@ -1,0 +1,56 @@
+:root {
+    --green_shade_light: #7ca982;
+    --green_shade_lighter: #f1f7ed;
+    --green_shade_dark: #243e36;
+    --error_block_bg: #803345;
+    --heading_font_size: 30px;
+    --font_weight_normal: 400;
+    --font_weight_medium: 500;
+    --font_weight_bold: 600;
+}
+
+* {
+    font-family: "Montserrat", sans-serif;
+}
+
+body {
+    background-color: rgb(248, 249, 246);
+}
+
+h1 {
+    text-align: center;
+    padding: 1rem;
+    color: var(--green_shade_dark);
+    font-weight: var(--font_weight_bold);
+    font-size: var(--heading_font_size);
+
+}
+
+table {
+    margin: 0 auto;
+    border-collapse: collapse;
+    border: 1px solid var(--green_shade_light);
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    font-size: 18px;
+}
+
+th,
+td {
+    padding: 20px;
+    border: 0.5px solid var(--green_shade_light);
+}
+
+th {
+    font-weight: var(--font_weight_medium);
+    background-color: rgba(34, 68, 51, 0.85);
+    color: var(--green_shade_lighter);
+}
+
+tr:nth-child(odd) {
+    background-color: var(--green_shade_lighter);
+}
+
+#empty_notifier {
+    text-align: center;
+    font-size: 24px;
+}

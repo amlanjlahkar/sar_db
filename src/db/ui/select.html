@@ -1,0 +1,32 @@
+<!doctype html>
+
+<html lang="en">
+    <head>
+        <title>SAR Operations</title>
+    </head>
+    <body>
+        <h2>Select an option:</h2>
+        <form id="sarOp">
+            <select id="pageSelection" onchange="redirectToPage()">
+                <option value="" disabled selected hidden>
+                    Select an option
+                </option>
+                <option value="register/student/index">
+                    Register New Students
+                </option>
+                <option value="show/show_students">
+                    Show Available Students
+                </option>
+            </select>
+        </form>
+    </body>
+
+    <script>
+        function redirectToPage() {
+            let selectedPage = document.getElementById("pageSelection").value
+            if (selectedPage !== "") {
+                window.location.href = selectedPage + ".php"
+            }
+        }
+    </script>
+</html>
