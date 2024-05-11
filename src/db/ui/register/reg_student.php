@@ -9,7 +9,7 @@
             rel="stylesheet"
             href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
         />
-        <link rel="stylesheet" type="text/css" href="./style.css" />
+        <link rel="stylesheet" type="text/css" href="../stylesheets/student_form.css" />
     </head>
 
     <body>
@@ -22,7 +22,7 @@
                 </div>
                 <div id="form_block">
 
-                    <form id="st_info">
+                    <form id="st_form">
                         <br />
                         <div class="input_block">
                             <label for="st_name">Student Name</label><br />
@@ -88,7 +88,7 @@
                                     Select a course
                                 </option>
                                 <?php
-                                require_once "../../../dbcon.php";
+                                require_once "../../dbcon.php";
 
                                 $q_course_info =
                                     "SELECT CourseID, CourseName FROM Course ORDER BY CourseName ASC";
@@ -109,9 +109,9 @@
                                 ?>
                             </select>
                             <br />
-
-
                         </div>
+
+
                         <div class="input_block">
                             <label for="st_branch">Branch</label><br />
                             <select id="st_branch" name="st_branch">
@@ -124,7 +124,7 @@
                 </div>
 
                 <div id="submit_block">
-                    <button form="st_info" type="submit" name="Register">
+                    <button form="st_form" type="submit" name="Register">
                         Register
                     </button>
                 </div>
@@ -132,12 +132,18 @@
         </div>
     </body>
 
-    <script src="../../../utils/update_branches.js"></script>
+    <script src="../../scripts/validate_student_form.js"></script>
 
-    <script src="./validate.js"></script>
+    <?php $fetchURL = "../../scripts/fetch_branches.php" ?>
 
     <script>
-        let formEl = document.getElementById("st_info");
+        let fetchURL = "<?= $fetchURL ?>"
+    </script>
+
+    <script src="../../scripts/update_branches.js"></script>
+
+    <script>
+        let formEl = document.getElementById("st_form");
 
         formEl.addEventListener("submit", event => {
             event.preventDefault();
@@ -145,7 +151,7 @@
             const formData = new FormData(formEl);
             const data = Object.fromEntries(formData);
 
-            fetch("../../../insert/student.php", {
+            fetch("../../insert/student.php", {
                 method: "POST",
                 body: formData
             })

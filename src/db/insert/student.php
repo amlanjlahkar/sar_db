@@ -1,7 +1,7 @@
 <?php
 
 require_once "../dbcon.php";
-require_once "../utils/utils.php";
+require_once "../utils.php";
 
 function gen_studentID($sql_conn, $bcid) {
     $q_get_student_count = "WITH CurYear AS (

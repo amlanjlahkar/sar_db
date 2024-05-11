@@ -94,8 +94,6 @@ select {
     appearance: none;
 }
 
-
-
 input:focus {
     outline: none;
     border: 2px solid var(--green_shade_light);

@@ -1,4 +1,4 @@
-const form = document.forms["st_info"]
+const form = document.forms["st_form"]
 const st_name = form.elements["st_name"]
 const st_phno = form.elements["st_phno"]
 const st_addr = form.elements["st_addr"]

@@ -1,6 +1,6 @@
 <?php
 
-require_once "../../utils/utils.php";
+require_once "../../utils.php";
 
 function gen_table($sql_conn, $q) {
     $result = try_query($sql_conn, $q);
@@ -14,7 +14,7 @@ function gen_table($sql_conn, $q) {
     $tb_data = "";
 
     if ($result->num_rows > 0) {
-        $edit = "../../update/student.php";
+        $update_page = "../../ui/modify/student.php";
 
         $tb_data .= "<tr>";
 
@@ -36,7 +36,7 @@ function gen_table($sql_conn, $q) {
             $tb_data .=
                 "<td class='action_link_up'>
                 <a href='" .
-                $edit .
+                $update_page .
                 "?id=" .
                 $rinfo["StudentID"] .
                 "'>Update Entry</a>

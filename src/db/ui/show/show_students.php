@@ -3,18 +3,20 @@
 <html>
     <head>
         <title>Student Info</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
             rel="stylesheet"
             href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
         />
-        <link rel="stylesheet" type="text/css" href="table.css" />
+        <link rel="stylesheet" type="text/css" href="../stylesheets/display_table.css" />
     </head>
     <body>
         <h1>Student Info</h1>
 
         <table>
             <?php
-            require_once "../../utils/gen_table.php";
+            require_once "../../scripts/gen_table.php";
             require_once "../../dbcon.php";
 
             $q_get_students = "SELECT * FROM Student GROUP BY StudentID ASC";

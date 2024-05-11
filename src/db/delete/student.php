@@ -1,7 +1,7 @@
 <?php
 
 require_once "../dbcon.php";
-require_once "../utils/utils.php";
+require_once "../utils.php";
 
 $stmt_del = $conn->prepare("DELETE FROM Student WHERE StudentID = ?");
 
