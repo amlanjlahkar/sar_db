@@ -13,7 +13,8 @@ function gen_studentID($sql_conn, $bcid) {
             FROM Student
             WHERE BCID = '$bcid' AND YOA = YEAR(CURDATE())
         ) AS StudentInfo
-        RIGHT JOIN CurYear ON 1=1";
+        RIGHT JOIN CurYear ON 1=1
+        ORDER BY StudentID DESC LIMIT 1";
 
     $result = try_query($sql_conn, $q_get_student_count);
 
@@ -25,7 +26,10 @@ function gen_studentID($sql_conn, $bcid) {
 
     $rinfo = $result->fetch_row();
 
-    $serial_no = $rinfo[1] == null ? 1 : $result->num_rows + 1;
+    /* assign 1 no data exists
+     * else assign 1 + serial no. of the last student
+     */
+    $serial_no = $rinfo[1] == null ? 1 : intval(substr($rinfo[1], -2)) + 1;
     $year = $rinfo[0];
 
     $result->free();
@@ -93,8 +97,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
         if ($stmt_insert->execute()) {
             send_response(true, "Registered successfully");
-        } else {
-            send_response(false, "Error inserting data");
         }
     } else {
         send_response(

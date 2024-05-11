@@ -149,7 +149,6 @@
             event.preventDefault();
 
             const formData = new FormData(formEl);
-            const data = Object.fromEntries(formData);
 
             fetch("../../insert/student.php", {
                 method: "POST",

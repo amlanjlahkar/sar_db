@@ -19,7 +19,7 @@
             require_once "../../scripts/gen_table.php";
             require_once "../../dbcon.php";
 
-            $q_get_students = "SELECT * FROM Student GROUP BY StudentID ASC";
+            $q_get_students = "SELECT * FROM Student ORDER BY StudentID ASC";
 
             // TODO: provide optional arg(or other param) to inform gen_table
             // about the function(name) for deletion for click event

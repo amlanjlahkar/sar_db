@@ -3,6 +3,7 @@ require_once "../../dbcon.php";
 require_once "../../utils.php";
 
 $student_id = $_GET["id"];
+$bcid = $_GET["bcid"];
 
 $q_get_st_info = "SELECT s.Name, s.DOB, s.Address, s.PhoneNo, btc.CourseID, btc.BranchID
     FROM Student s
@@ -20,14 +21,14 @@ if ($result->num_rows > 0) {
 
 <html>
     <head>
-        <title>Student Registration Form</title>
+        <title>Student Info Modification</title>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
             rel="stylesheet"
             href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
         />
-        <link rel="stylesheet" type="text/css" href="../../stylesheets/style.css" />
+        <link rel="stylesheet" type="text/css" href="../stylesheets/student_form.css" />
     </head>
 
     <body>
@@ -35,7 +36,7 @@ if ($result->num_rows > 0) {
             <div id="student_form">
                 <div id="heading_block">
                     <div>
-                        <p id="heading">Student Info Updation Form</p>
+                        <p id="heading">Student Info Modification Form</p>
                     </div>
                 </div>
                 <div id="form_block">
@@ -139,9 +140,8 @@ if ($result->num_rows > 0) {
                                 ?>
                             </select>
                             <br />
-
-
                         </div>
+
                         <div class="input_block">
                             <label for="st_branch">Branch</label><br />
                             <select id="st_branch" name="st_branch">
@@ -152,11 +152,19 @@ if ($result->num_rows > 0) {
                         </div>
                     </form>
                 </div>
+
+                <div id="submit_block">
+                    <button form="st_form" type="submit" name="Update">
+                        Update
+                    </button>
+                </div>
             </div>
         </div>
     </body>
 
-    <?php $fetchURL = "../../scripts/fetch_branches.php" ?>
+    <script src="../../scripts/validate_student_form.js"></script>
+
+    <?php $fetchURL = "../../scripts/fetch_branches.php"; ?>
 
     <script>
         let fetchURL = "<?= $fetchURL ?>"
@@ -164,6 +172,38 @@ if ($result->num_rows > 0) {
 
     <script src="../../scripts/update_branches.js"></script>
 
+    <script>
+        let studentId = "<?= $student_id ?>"
+        let bcid = "<?= $bcid ?>"
+
+        let formEl = document.getElementById("st_form");
+
+        formEl.addEventListener("submit", event => {
+            event.preventDefault();
+
+            const formData = new FormData(formEl);
+
+            let url = "../../update/student.php"
+            url += "?id=" + encodeURIComponent(studentId)
+            url += "&bcid=" + encodeURIComponent(bcid)
+
+            fetch(url, {
+                method: "POST",
+                body: formData
+            })
+            .then((res) => { if (res.ok) { console.log("OK"); return res.json() } })
+            .then((data) => {
+                alert(data.msg)
+
+                if (data.strace) { console.error(data.strace) }
+
+                if (data.success) {
+                    window.location.href = "../show/show_students.php"
+                }
+            })
+            .catch((err) => console.error("Error fetching data:", err))
+        })
+    </script>
 </html>
 
 

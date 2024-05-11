@@ -14,7 +14,7 @@ function gen_table($sql_conn, $q) {
     $tb_data = "";
 
     if ($result->num_rows > 0) {
-        $update_page = "../../ui/modify/student.php";
+        $update_uri = "../../ui/modify/student.php";
 
         $tb_data .= "<tr>";
 
@@ -34,14 +34,16 @@ function gen_table($sql_conn, $q) {
             }
 
             $tb_data .=
-                "<td class='action_link_up'>
+                "<td class='action_update'>
                 <a href='" .
-                $update_page .
+                $update_uri .
                 "?id=" .
                 $rinfo["StudentID"] .
+                "&bcid=" .
+                $rinfo["BCID"] .
                 "'>Update Entry</a>
                 </td>
-                <td class='action_link_del'>
+                <td class='action_delete'>
                 <a href='#' onclick=deleteStudent('" .
                 $rinfo["StudentID"] .
                 "')>Delete Entry</a>

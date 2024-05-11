@@ -26,6 +26,10 @@ h1 {
 
 }
 
+a {
+    text-decoration: none;
+}
+
 table {
     margin: 0 auto;
     border-collapse: collapse;
@@ -44,6 +48,27 @@ th {
     font-weight: var(--font_weight_medium);
     background-color: rgba(34, 68, 51, 0.85);
     color: var(--green_shade_lighter);
+}
+
+#th_action {
+    background-color: var(--green_shade_light);
+    color: var(--green_shade_dark);
+}
+
+.action_delete {
+    background-color: var(--error_block_bg);
+}
+
+.action_delete>a {
+    color: white;
+}
+
+.action_update {
+    background-color: blue;
+}
+
+.action_update>a {
+    color: white;
 }
 
 tr:nth-child(odd) {
